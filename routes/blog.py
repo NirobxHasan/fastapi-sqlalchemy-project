@@ -2,9 +2,10 @@ from turtle import title
 from fastapi import APIRouter, Depends, status,Response, HTTPException 
 from sqlalchemy.orm import Session
 from config.db import get_db
-from  schemas.index import Blog, ShowBlog
+from  schemas.index import Blog, ShowBlog,User
 from models  import index
 from typing import List
+from utils.oauth2 import get_current_user
 blogRoute = APIRouter(
     prefix="/blog",
     tags=["blog"],
@@ -25,7 +26,7 @@ def create(request:Blog, db: Session = Depends(get_db) ):
 
 
 @blogRoute.get('/', response_model=List[ShowBlog])
-def all(db: Session = Depends(get_db)):
+def all(db: Session = Depends(get_db), get_current_user:User=Depends(get_current_user) ):
     blogs = db.query(index.Blog).all()
     return blogs
 

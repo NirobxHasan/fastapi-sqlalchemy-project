@@ -13,5 +13,6 @@ class User(Base):
     id = Column(Integer, primary_key= True, index= True)
     name =Column(String(255))
     email =Column(String(255))
+    age = Column(Integer, nullable=True)
     password = Column(String(255))
     blogs = relationship("Blog", back_populates ="creator")

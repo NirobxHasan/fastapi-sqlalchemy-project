@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from routes.index import user,blogRoute
-
+from routes.index import user,blogRoute,loginRouter
 from models import index
 from config.db import engine,Base
 
@@ -13,6 +12,7 @@ Base.metadata.create_all(engine)
 
 app.include_router(user)
 app.include_router(blogRoute)
+app.include_router(loginRouter)
 
 
  

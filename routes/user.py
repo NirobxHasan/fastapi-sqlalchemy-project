@@ -16,7 +16,7 @@ user = APIRouter( prefix="/user",
 
 @user.post("/")
 def create_user(request: User, db: Session = Depends(get_db)):
-    new_user = index.User(name= request.name, email=request.email, password=Hash.bcrpt(request.password))
+    new_user = index.User(name= request.name, email=request.email,age=request.age, password=Hash.bcrpt(request.password))
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

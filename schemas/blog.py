@@ -6,14 +6,11 @@ class Blog(BaseModel):
     
     title: str
     body: str
-    # user_id: int
+    user_id: int
     
-    # class Config:
-    #     orm_mode = True
 class ShowUser(BaseModel):
     name: str
     email: str
-    # blogs: List[B] = []
     class Config():
         orm_mode = True
 
